@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Book list</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+</head>
+<body>
+<center><h3>Book Table View</h3></center>
+
+<table class="table table-striped">
+        <thead>
+         <tr>
+           <th>BookId</th>
+           <th>Book Title</th>
+           <th>Book ISBN</th>
+           <th>Book Author</th>
+             <th>Book Release Year</th>
+             <th>Language</th>
+             <th>Action</th>
+           
+        </tr>
+        </thead>
+        <tbody>
+       
+          <tr th:each="book: ${books}">
+             <td th:text="${book.bookId}"></td>
+             <td th:text="${book.bookTitle}"></td>
+             <td th:text="${book.isbn}"></td>
+             <td th:text="${book.author}"></td>
+             <td th:text="${book.releaseYear}"></td>   
+           <td th:text="${book.language}"></td>
+           
+           <td><a th:href="'showBookList/'+${book.bookId}" class="btn btn-link btn-lg text-center">Delete</a></td>
+             
+          </tr>
+        </tbody>
+    </table>
+
+   
+</body>
+</html>
