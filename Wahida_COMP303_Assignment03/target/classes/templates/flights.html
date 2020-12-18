@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Airline Reservation System</title>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+</head>
+<style>
+div.card {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+	padding: 20px;
+}
+
+.content {
+	width: 1000px;
+	margin: auto;
+	top: 40px;
+}
+</style>
+<body>
+	<div class="panel-body content-form content card">
+
+		<form action="createTicket" method="post">
+		<div th:if="${passenger != null}">
+					<div class="form-group">
+						<label style="font-style: italic;font-weight: bold;" th:text="${'Passenger: ' + passenger.firstName + ' ' + passenger.lastName}">First Name</label>
+					</div>
+				</div>
+
+			<div class="form-group date">
+				<label>Select Departure Date</i></label> 
+				<input style="width: fit-content" type="date" name="departureDate" class="form-control" required />
+			</div>
+
+			<div class="form-group">
+			<label>Select Flight</i></label> 
+				<table class="table">
+
+				<tbody>
+					<tr>
+					<tr th:each="flight : ${flights}">
+						<td><input type="radio" name="flightId" th:value="${flight.flightId}" required/></td>
+						<td th:text="${flight.flightId}"></td>
+						<td th:text="${flight.airlineName}"></td>
+						<td th:utext="${#dates.format(flight.departTime, 'HH:mm') + ' - ' + flight.departAirport + '<br/>' + 
+						#dates.format(flight.arrivalTime, 'HH:mm') + ' - ' + flight.arrivalAirport}"
+						></td>
+						<td th:text="${flight.duration}"></td>
+						<td th:text="${flight.totalSeats + ' seats'}"></td>
+						<td th:text="${#numbers.formatCurrency(flight.price)}"></td>
+					</tr>
+
+
+
+				</tbody>
+			</table>
+			</div>
+			
+			   <div class="text-center">
+          <input type="submit" value="Finish" class="btn btn-danger">
+        </div>
+			
+		</form>
+
+	</div>
+</body>
+</html>

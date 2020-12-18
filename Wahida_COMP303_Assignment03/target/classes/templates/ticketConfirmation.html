@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Airline Reservation System</title>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+</head>
+<style>
+div.card {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+	padding: 20px;
+}
+
+.content {
+	width: 700px;
+	margin: auto;
+	top: 40px;
+}
+</style>
+<body>
+	<div class="panel-body content-form content card">
+		<h4>Ticket Confirmation</h4>
+		<table class="table">
+
+			<tbody>
+				<tr>
+					<td>Flight #</td>
+					<td th:text="${ticket.flightId}"></td>
+				</tr>
+				<tr>
+					<td>Passenger #</td>
+					<td th:text="${ticket.passengerId}"></td>
+				</tr>
+				<tr>
+					<td>Departure Date</td>
+					<td th:text="${#dates.format(ticket.departureDate, 'yyyy-MM-dd')}"></td>
+				</tr>
+				<tr>
+					<td>Amount Paid</td>
+					<td th:text="${ticket.amountPaid}"></td>
+				</tr>
+				<tr>
+					<td>Status</td>
+					<td th:text="${ticket.status}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h4>Passenger Information</h4>
+
+		<table class="table">
+			<tbody>
+				<tr>
+					<td>Name</td>
+					<td th:text="${passenger.firstName + ' ' + passenger.lastName}"></td>
+				</tr>
+				<tr>
+					<td>Address</td>
+					<td
+						th:utext="${passenger.address + '. ' + passenger.city  + '. ' + passenger.country}"></td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td th:text="${passenger.email}"></td>
+				</tr>
+				<tr>
+					<td>Phone</td>
+					<td th:text="${passenger.telephone}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h4>Flight Information</h4>
+		<table class="table">
+			<tbody>
+				<tr>
+					<td>Flight #</td>
+					<td th:text="${flight.flightId}"></td>
+				</tr>
+				<tr>
+					<td>Airline</td>
+					<td th:text="${flight.airlineName}"></td>
+				</tr>
+				<tr>
+					<td>Departure (Time/Airport)</td>
+					<td
+						th:text="${#dates.format(flight.departTime, 'HH:mm') + ' - ' + flight.departAirport}"></td>
+				</tr>
+				<tr>
+					<td>Arrival (Time/Airport)</td>
+					<td
+						th:text="${#dates.format(flight.arrivalTime, 'HH:mm') + ' - ' + flight.arrivalAirport}"></td>
+				</tr>
+				<tr>
+					<td>Duration</td>
+					<td th:text="${flight.duration}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+
+
+
+
+	</div>
+</body>
+</html>
